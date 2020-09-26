@@ -30,10 +30,6 @@ const result = (props) => {
 
     return (
       <div>
-        <h2 className="text-secondary">
-          {props.patient.name[0].given} {props.patient.name[0].family}
-        </h2>
-        <h3 className="lead">Bundle: {props.total} resources</h3>
         <table className="table table-sm">
           <thead className="thead-light">
             <tr>

@@ -1,21 +1,22 @@
 import React, { Component } from "react";
 import FHIR from "fhirclient";
 import Spinner from "../../elements/Spinner";
-import NavBar from "../../elements/NavBar";
+import Header from "../../components/Header/Header";
 
 import CQL from "../../components/cql/cql";
 import Result from "../../components/Result/Result";
-import { CQLlibrary } from "../../data/cql-files.json";
 
 class Home extends Component {
   state = {
     patient: null,
     resources: null,
+    cql: null,
     error: null,
   };
 
   componentDidMount() {
     let client;
+
     FHIR.oauth2
       .ready()
       .then((FHIRclient) => {
@@ -23,6 +24,7 @@ class Home extends Component {
       })
       .then(() => client.patient.read())
       .then((patient) => {
+        this.setState({ patient });
         let entries = [];
 
         const getResourceEntries = (nextPage) => {
@@ -51,7 +53,13 @@ class Home extends Component {
                 entry: entries,
               };
 
-              this.setState({ resources, patient });
+              this.setState({ resources });
+
+              CQL(resources)
+                .then((cql) => {
+                  this.setState({ cql });
+                })
+                .catch(console.error);
             }
           }
         };
@@ -69,38 +77,28 @@ class Home extends Component {
 
   render() {
     var ret = null;
+    const total = this.state.resources
+      ? this.state.resources.entry.length
+      : null;
+    const patient = this.state.patient;
+    const cql = this.state.cql;
 
     if (this.state.error) {
+      ret = <pre>{this.state.error.message}</pre>;
+    } else if (cql) {
       ret = (
-        <div>
-          <NavBar library={CQLlibrary} />
-          <pre>{this.state.error.message}</pre>
+        <div className="container-fluid">
+          <Result results={cql} />
         </div>
       );
-    } else if (this.state.resources) {
-      const cql = CQL(this.state.resources);
+    } else ret = <Spinner />;
 
-      ret = (
-        <div>
-          <NavBar library={CQLlibrary} />
-          <div className="container-fluid">
-            <Result
-              total={this.state.resources.entry.length}
-              results={cql}
-              patient={this.state.patient}
-            />
-          </div>
-        </div>
-      );
-    } else
-      ret = (
-        <div>
-          <NavBar library={CQLlibrary} />
-          <Spinner />
-        </div>
-      );
-
-    return ret;
+    return (
+      <div>
+        <Header total={total} patient={patient} />
+        {ret}
+      </div>
+    );
   }
 }
 

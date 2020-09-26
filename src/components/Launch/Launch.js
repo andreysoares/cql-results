@@ -17,7 +17,7 @@ class Launch extends Component {
   }
 
   render() {
-    return <Spinner />;
+    return <Spinner type={"Loading"} />;
   }
 }
 

@@ -28,18 +28,22 @@ const r4Repository = loadIncludes(r4FactorsELM.library);
 
 // CQL Engine
 const cqlExec = (data) => {
-  var patientSource = cqlfhir.PatientSource.FHIRv400();
-  patientSource.loadBundles([data]);
+  return new Promise(function (resolve, reject) {
+    var patientSource = cqlfhir.PatientSource.FHIRv400();
+    patientSource.loadBundles([data]);
 
-  const library = new cql.Library(
-    r4FactorsELM,
-    new cql.Repository(r4Repository)
-  );
-  const codeService = new cql.CodeService(valueSetDB);
-  const executor = new cql.Executor(library, codeService);
-  const results = executor.exec(patientSource);
+    const library = new cql.Library(
+      r4FactorsELM,
+      new cql.Repository(r4Repository)
+    );
+    const codeService = new cql.CodeService(valueSetDB);
+    const executor = new cql.Executor(library, codeService);
+    const results = executor.exec(patientSource);
 
-  return results.patientResults[Object.keys(results.patientResults)[0]];
+    resolve(results.patientResults[Object.keys(results.patientResults)[0]]);
+  }).then((results) => {
+    return results;
+  });
 };
 
 export default cqlExec;
