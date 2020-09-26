@@ -34,7 +34,7 @@ class Home extends Component {
               entries = entries.concat(resource.entry);
               checkNextUrl(resource.link);
             })
-            .catch(console.error);
+            .catch((error) => this.setState({ error }));
         };
 
         const checkNextUrl = (link) => {
