@@ -6,7 +6,9 @@ const header = (props) => {
     ? props.patient.name[0].given + " " + props.patient.name[0].family
     : "";
   const total =
-    props.total && props.total > 0 ? props.total + " resources" : "...";
+    props.total && props.total > 0
+      ? "Bundle:" + props.total + " resources"
+      : null;
 
   return (
     <div>
@@ -18,7 +20,7 @@ const header = (props) => {
       </nav>
       <div className="container-fluid">
         <h2 className="text-secondary">{pt}</h2>
-        <h3 className="lead">Bundle: {total} </h3>
+        <h3 className="lead">{total} </h3>
       </div>
     </div>
   );

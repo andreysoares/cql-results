@@ -27,6 +27,7 @@ class Home extends Component {
         this.setState({ patient });
         let entries = [];
 
+        // Get Resources
         const getResourceEntries = (nextPage) => {
           return client
             .request(nextPage)
@@ -37,6 +38,7 @@ class Home extends Component {
             .catch((error) => this.setState({ error }));
         };
 
+        // Check Next Page
         const checkNextUrl = (link) => {
           if (typeof link !== "undefined" && link.length > 0) {
             const nextUrl = link.filter((e) => {
@@ -65,7 +67,7 @@ class Home extends Component {
         };
 
         client
-          .request(`Patient/${patient.id}/$everything?_count=1000`)
+          .request(`Patient/${patient.id}/$everything?_count=10000`)
           .then((resource) => {
             entries = entries.concat(resource.entry);
             checkNextUrl(resource.link);
@@ -84,7 +86,14 @@ class Home extends Component {
     const cql = this.state.cql;
 
     if (this.state.error) {
-      ret = <pre>{this.state.error.message}</pre>;
+      ret = (
+        <div className="container-fluid">
+          <div class="alert alert-warning" role="alert">
+            ERROR: An error occurred while processing patient data!
+          </div>
+          <pre>{this.state.error.message}</pre>
+        </div>
+      );
     } else if (cql) {
       ret = (
         <div className="container-fluid">

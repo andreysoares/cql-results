@@ -47,39 +47,39 @@
       "valueSets" : {
          "def" : [ {
             "name" : "Total Cholesterol Laboratory Test",
-            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.104.11.1033",
+            "id" : "2.16.840.1.113883.3.464.1003.104.11.1033",
             "accessLevel" : "Public"
          }, {
             "name" : "Total Cholesterol LOINC",
-            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.600.877",
+            "id" : "2.16.840.1.113883.3.600.877",
             "accessLevel" : "Public"
          }, {
             "name" : "HDL-C Laboratory Test",
-            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.104.12.1012",
+            "id" : "2.16.840.1.113883.3.464.1003.104.12.1012",
             "accessLevel" : "Public"
          }, {
             "name" : "High Density Lipoprotein (HDL) LOINC",
-            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.600.873",
+            "id" : "2.16.840.1.113883.3.600.873",
             "accessLevel" : "Public"
          }, {
             "name" : "Systolic Blood Pressure",
-            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1104.2",
+            "id" : "2.16.840.1.113762.1.4.1104.2",
             "accessLevel" : "Public"
          }, {
             "name" : "Diabetes",
-            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.103.12.1001",
+            "id" : "2.16.840.1.113883.3.464.1003.103.12.1001",
             "accessLevel" : "Public"
          }, {
             "name" : "Hypertension",
-            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1032.9",
+            "id" : "2.16.840.1.113762.1.4.1032.9",
             "accessLevel" : "Public"
          }, {
             "name" : "Anti-Hypertensive Pharmacologic Therapy",
-            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.600.1476",
+            "id" : "2.16.840.1.113883.3.600.1476",
             "accessLevel" : "Public"
          }, {
             "name" : "Current Tobacco Smoker",
-            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.600.2390",
+            "id" : "2.16.840.1.113883.3.600.2390",
             "accessLevel" : "Public"
          } ]
       },
