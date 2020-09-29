@@ -4,7 +4,7 @@ import { CQLlibrary } from "../../data/cql-files.json";
 const header = (props) => {
   const pt = props.patient
     ? props.patient.name[0].given + " " + props.patient.name[0].family
-    : "";
+    : null;
   const total =
     props.total && props.total > 0
       ? "Bundle:" + props.total + " resources"

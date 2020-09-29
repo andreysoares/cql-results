@@ -52,24 +52,24 @@ codesystem "Race & Ethnicity - CDC": 'urn:oid:2.16.840.1.113883.6.238'
 
 // Using two existing Total-c value sets. Both contain unique LOINC codes that are appropriate to represent Total-c.
 // [See value set in VSAC](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.3.464.1003.104.11.1033/expansion)
-valueset "Total Cholesterol Laboratory Test": '2.16.840.1.113883.3.464.1003.104.11.1033'
+valueset "Total Cholesterol Laboratory Test": 'https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.104.11.1033'
 // [See value set in VSAC](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.3.600.877/expansion)
-valueset "Total Cholesterol LOINC": '2.16.840.1.113883.3.600.877'
+valueset "Total Cholesterol LOINC": 'https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.600.877'
 // Using two existing HDL-c value sets. Both contain unique LOINC codes that are appropriate to represent HDL-c.
 // [See value set in VSAC](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.3.464.1003.104.12.1012/expansion)
-valueset "HDL-C Laboratory Test": '2.16.840.1.113883.3.464.1003.104.12.1012'
+valueset "HDL-C Laboratory Test": 'https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.104.12.1012'
 // [See value set in VSAC](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.3.600.873/expansion)
-valueset "High Density Lipoprotein (HDL) LOINC": '2.16.840.1.113883.3.600.873'
+valueset "High Density Lipoprotein (HDL) LOINC": 'https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.600.873'
 // [See value set in VSAC](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1104.2/expansion)
-valueset "Systolic Blood Pressure": '2.16.840.1.113762.1.4.1104.2'
+valueset "Systolic Blood Pressure": 'https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1104.2'
 // [See value set in VSAC](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.3.464.1003.103.12.1001/expansion)
-valueset "Diabetes": '2.16.840.1.113883.3.464.1003.103.12.1001'
+valueset "Diabetes": 'https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.103.12.1001'
 // [See value set in VSAC](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1032.9/expansion)
-valueset "Hypertension": '2.16.840.1.113762.1.4.1032.9'
+valueset "Hypertension": 'https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1032.9'
 // [See value set in VSAC](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.3.600.1476/expansion)
-valueset "Anti-Hypertensive Pharmacologic Therapy": '2.16.840.1.113883.3.600.1476'
+valueset "Anti-Hypertensive Pharmacologic Therapy": 'https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.600.1476'
 // [See value set in VSAC](https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.3.600.2390/expansion)
-valueset "Current Tobacco Smoker": '2.16.840.1.113883.3.600.2390'
+valueset "Current Tobacco Smoker": 'https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.600.2390'
 
 // ## Individual codes ##
 

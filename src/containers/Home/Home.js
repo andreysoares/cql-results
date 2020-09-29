@@ -66,6 +66,9 @@ class Home extends Component {
           }
         };
 
+        // _count is the max number of resources to be retrieved.
+        // Some Synthea samples have over 7K resources.
+        // An error occurrs when reaching the _count and there are still more resources.
         client
           .request(`Patient/${patient.id}/$everything?_count=10000`)
           .then((resource) => {

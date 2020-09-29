@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.5.2",
     "cql-exec-fhir": "^1.4.1",
-    "cql-exec-vsac": "^1.1.1",
+    "cql-exec-vsac": "1.1.1",
     "cql-execution": "^1.4.5",
     "fhirclient": "^2.3.5",
     "jquery": "^3.5.1",
