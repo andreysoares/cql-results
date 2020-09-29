@@ -4,6 +4,37 @@ import cqlfhir from "cql-exec-fhir";
 import valueSetDB from "../../data/valueset-db.json";
 import { CQLlibrary } from "../../data/cql-files.json";
 
+class UrlFriendlyCodeService extends cql.CodeService {
+  findValueSetsByOid(id) {
+    const [oid] = this.extractOidAndVersion(id);
+    return super.findValueSetsByOid(oid);
+  }
+
+  findValueSet(id, version) {
+    const [oid, embeddedVersion] = this.extractOidAndVersion(id);
+    if (version == null && embeddedVersion != null) {
+      version = embeddedVersion;
+    }
+    return super.findValueSet(oid, version);
+  }
+
+  extractOidAndVersion(id) {
+    if (id == null) return [];
+
+    // first check for VSAC FHIR URL (ideally https is preferred but support http just in case)
+    // if there is a | at the end, it indicates that a version string follows
+    let m = id.match(/^https?:\/\/cts\.nlm\.nih\.gov\/fhir\/ValueSet\/([^|]+)(\|(.+))?$/);
+    if (m) return m[3] == null ? [m[1]] : [m[1], m[3]];
+
+    // then check for urn:oid
+    m = id.match(/^urn:oid:(.+)$/);
+    if (m) return [m[1]];
+
+    // finally just return as-is
+    return [id];
+  }
+}
+
 const r4FactorsELM = require("../../data/R4/" + CQLlibrary);
 
 // Dynamic import include libraries recursively
@@ -36,7 +67,7 @@ const cqlExec = (data) => {
       r4FactorsELM,
       new cql.Repository(r4Repository)
     );
-    const codeService = new cql.CodeService(valueSetDB);
+    const codeService = new UrlFriendlyCodeService(valueSetDB);
     const executor = new cql.Executor(library, codeService);
     const results = executor.exec(patientSource);
 
