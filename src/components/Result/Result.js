@@ -7,7 +7,7 @@ const result = (props) => {
       .sort()
       .map((entry) => {
         const key = entry[0];
-        const type = typeof entry[1];
+        var type = Array.isArray(entry[1]) ? "Array" : typeof entry[1];
         const value =
           type === "undefined"
             ? undefined
@@ -22,6 +22,14 @@ const result = (props) => {
                 data={value}
                 theme={{ base00: "#272822" }}
                 invertTheme={true}
+                labelRenderer={([key], nodeType) => (
+                  <div>
+                    <strong>{key}</strong>
+                    {/* &nbsp; ({nodeType}) */}
+                  </div>
+                )}
+                hideRoot={true}
+                valueRenderer={(raw) => <em>{raw}</em>}
               />
             </td>
           </tr>
