@@ -5,7 +5,7 @@ https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-PAIN-MANAGEMENT-SUMMARY
 
 // This script updates the valueset-db.json file with any changes from the CQL
 // library and/or changes in the value set definitions in VSAC.  It should be
-// called with the UMLS Username and Password as arguments.
+// called with the UMLS arguments.
 const fs = require("fs");
 const path = require("path");
 const temp = require("temp");
@@ -52,13 +52,13 @@ const r4Repository = loadIncludes(r4FactorsELM.library);
 // First ensure username and password are set as environment variables.
 // Use EXPORT for Mac/Linux and SET for Windows. For example:
 // export UMLS_USER_NAME=myusername
-// export UMLS_PASSWORD=mypassword
-const user = process.env.UMLS_USER_NAME;
-const password = process.env.UMLS_PASSWORD;
+// export UMLS_API_KEY=myapikey
+const UMLS_USER_NAME = process.env.UMLS_USER_NAME;
+const UMLS_API_KEY = process.env.UMLS_API_KEY;
 
-if (typeof user === "undefined" || typeof password === "undefined") {
+if (typeof UMLS_USER_NAME === "undefined" || typeof UMLS_API_KEY === "undefined") {
   console.error(
-    "The UMLS username and/or password are not set as environment variables"
+    "The UMLS_USER_NAME and/or UMLS_API_KEY are not set as environment variables"
   );
   process.exit(1);
 }
@@ -82,10 +82,10 @@ const r4Lib = new Library(r4FactorsELM, new Repository(r4Repository));
 // indicates to also look at dependency libraries.  This has no affect
 // for the current CQL, but may be helpful for people who extend it.
 
-console.log(`Loading value sets from VSAC using account: ${user}`);
+console.log(`Loading value sets from VSAC using account: ${UMLS_USER_NAME}`);
 
 codeService
-  .ensureValueSetsInLibrary(r4Lib, true, user, password)
+  .ensureValueSetsInLibraryWithAPIKey(r4Lib, true, UMLS_API_KEY)
   .then(() => {
     // The valueset-db.json that the codeService produces isn't exactly the
     // format that the Pain Management Summary wants, so now we must reformat
@@ -119,7 +119,7 @@ codeService
     let message = error.message;
     if (error.statusCode === 401) {
       // The default 401 message isn't helpful at all
-      message = "invalid password or unauthorized access";
+      message = "invalid UMLS credentials or unauthorized access";
     }
 
     console.error("Error updating valueset-db.json:", message);

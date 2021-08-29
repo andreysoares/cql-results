@@ -7,7 +7,7 @@ const header = (props) => {
     : null;
   const total =
     props.total && props.total > 0
-      ? "Bundle: " + props.total + " resources"
+      ? "Bundle: " + props.total + " FHIR Resources"
       : null;
 
   return (
