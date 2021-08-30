@@ -1,15 +1,7 @@
-FROM node:10
-
-WORKDIR /usr/src/app
-
-COPY package*.json ./
-
+FROM node:12-alpine
+WORKDIR /app
+COPY package.json yarn.lock ./
 RUN yarn install
-
 COPY . .
-
 EXPOSE 3000
-
-USER node
-
-CMD [ "yarn", "start" ]
+CMD ["yarn", "start"]

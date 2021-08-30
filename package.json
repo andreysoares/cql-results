@@ -39,5 +39,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "https://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@github.com/andreysoares/cql-results.git",
+  "author": "Andrey Soares <andrey.soares@cuanschutz.edu>",
+  "license": "MIT"
 }

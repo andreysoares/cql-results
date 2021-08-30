@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  cql-results:
+    stdin_open: true
+    container_name: cql-results
+    build: .
+    ports:
+      - "7000:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app
