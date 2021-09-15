@@ -1,68 +1,68 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CQL-Results SMARTonFHIR App
 
-## Available Scripts
+This project was based on the AHRQ's [Pain Management Summary SMART on FHIR Application](https://github.com/AHRQ-CDS/AHRQ-CDS-Connect-PAIN-MANAGEMENT-SUMMARY).
 
-In the project directory, you can run:
+## Setup UMLS
 
-### `yarn start`
+You need a NLM UMLS account and a UMLS API KEY to be able to update the value set DB. Visit the [NLM UMLS](https://www.nlm.nih.gov/research/umls/index.html) to request a license.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Setup the UMLS_USER_NAME and UMLS_API_KEY as environment variables.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+For Mac/Linux:
 
-### `yarn test`
+```
+$ export UMLS_USER_NAME=myusername
+$ export UMLS_API_KEY=myapikey
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+For Windows:
 
-### `yarn build`
+```
+$ export UMLS_USER_NAME=myusername
+$ export UMLS_API_KEY=myapikey
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Clone the repository
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```
+git clone https://github.com/andreysoares/cql-results.git
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## To build and run in development mode:
 
-### `yarn eject`
+- Install Node.js (12.19.0)
+- Install Yarn (1.22.10)
+- Install temp with `yarn add temp`
+- Install dependencies with `yarn`
+- Run `yarn start` from the root directory
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Using Docker-Compose
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To build the Docker image:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+$ docker-compose up -d
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Launching the App
 
-## Learn More
+Serve runs on port 3000 in development mode and port 7000 from the docker-compose. Launch the application with [SMART on FHIR Launcher](https://launch.smarthealthit.org/index.html). Use the App launch URL: http://localhost:3000/launch
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Target CQL file
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The app uses the cql file listed in the file `./cql-results/src/data/cql-files.json`.
 
-### Code Splitting
+If you modify any of the CQL files, you must convert the file from CQL to ELM (JSON file) and update the valuse set DB. For example:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```
+cql-to-elm --format=JSON --input ./cql-results/src/data/R4/Million_Hearts_Baseline_10_Year_ASCVD_Risk_FHIRv400.cql
+```
 
-### Analyzing the Bundle Size
+You need to update the value set DB based on the value sets defined in the CQL file.
+From the utils folder type:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```
+node updateValuseSetDB.js
+```
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+NOTE: If you change the content of the cql-files.json, the app will automatically process the patient data against the logic of the cql file informed.
