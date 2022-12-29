@@ -17,7 +17,7 @@
     "react-json-tree": "^0.13.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "temp": "^0.9.1"
+    "temp": "^0.9.4"
   },
   "scripts": {
     "start": "react-scripts start",
