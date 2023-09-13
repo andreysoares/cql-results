@@ -12,7 +12,7 @@ const header = (props) => {
 
   return (
     <div>
-      <nav className="navbar navbar-dark bg-dark navbar-static-top">
+      <nav className="navbar navbar-dark bg-primary navbar-static-top" >
         <h1 className="navbar-brand">CQL Results</h1>
         <ul className="navbar-nav">
           <li className="nav-item nav-link active">{CQLlibrary} </li>

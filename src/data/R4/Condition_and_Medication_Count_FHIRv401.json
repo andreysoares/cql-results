@@ -1,7 +1,7 @@
 {
    "library" : {
       "identifier" : {
-         "id" : "Condition_and_Medication_Count_FHIRv400",
+         "id" : "Condition_and_Medication_Count_FHIRv401",
          "version" : "0.0.1"
       },
       "schemaIdentifier" : {
@@ -15,14 +15,14 @@
          }, {
             "localIdentifier" : "FHIR",
             "uri" : "http://hl7.org/fhir",
-            "version" : "4.0.0"
+            "version" : "4.0.1"
          } ]
       },
       "includes" : {
          "def" : [ {
             "localIdentifier" : "FHIRHelpers",
             "path" : "FHIRHelpers",
-            "version" : "4.0.0"
+            "version" : "4.0.1"
          } ]
       },
       "codeSystems" : {
